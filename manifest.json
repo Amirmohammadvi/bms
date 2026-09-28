@@ -1,0 +1,36 @@
+{
+  "mver": "1.2.0",
+  "control": {
+    "identity": {
+      "name": "BankBMS",
+      "version": "1.0.0",
+      "displayname": "Bank BMS Dashboard",
+      "icon": "./assets/bankBMS.ico",
+      "type": "guid://FFC493E6-5085-418D-A5FF-419B085A2B80",
+      "start": "./control/index.html"
+    },
+    "metadata": {
+      "author": "Custom",
+      "keywords": [
+        "BMS",
+        "Building",
+        "WinCC Unified",
+        "Dashboard"
+      ]
+    },
+    "contracts": {
+      "api": {
+        "methods": {},
+        "events": {},
+        "properties": {
+          "InstantPower": {
+            "type": "number",
+            "default": 0,
+            "description": "Instantaneous building power in kW. Connect this property to a WinCC Unified PLC Real tag."
+          }
+        }
+      }
+    },
+    "types": {}
+  }
+}
