@@ -95,6 +95,7 @@
     floors: document.getElementById('screen-floors'),
     motorroom: document.getElementById('screen-motorroom'),
     power: document.getElementById('screen-power'),
+    lighting: document.getElementById('screen-lighting'),
     generic: document.getElementById('screen-generic')
   };
   const alarmCounts = { dashboard:5, floors:4, motorroom:2, power:1, hvac:3, lighting:0, fire:0, security:1, access:0, reports:0, settings:0 };
@@ -106,7 +107,7 @@
       const key = item.dataset.screen;
       Object.values(screens).forEach(s=>s.classList.remove('active'));
 
-      if(key==='dashboard'||key==='floors'||key==='motorroom'||key==='power'){
+      if(key==='dashboard'||key==='floors'||key==='motorroom'||key==='power'||key==='lighting'){
         screens[key].classList.add('active');
         document.getElementById('screenTitle').textContent = item.textContent.trim();
       } else {

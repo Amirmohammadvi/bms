@@ -269,6 +269,56 @@
         </div>
       </section>
 
+      <!-- ============ LIGHTING ============
+     این بلوک را در index.html، داخل <main class="content">
+     و قبل از <section id="screen-generic"> قرار بده. -->
+    <section class="screen" id="screen-lighting">
+
+      <div class="lt-kpis">
+        <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف روشنایی</span><span class="val"><span id="ltKpiPower">0</span> <small>kW</small></span></div>
+        <div class="kpi"><span class="lbl"><i class="fa-solid fa-lightbulb"></i> مدارهای روشن</span><span class="val"><span id="ltKpiOn">0</span> <small id="ltKpiTotal">/ 0</small></span></div>
+        <div class="kpi"><span class="lbl"><i class="fa-solid fa-sun"></i> میانگین شدت نور</span><span class="val"><span id="ltKpiAvg">0</span> <small>%</small></span></div>
+        <div class="kpi"><span class="lbl"><i class="fa-solid fa-robot"></i> مناطق در حالت خودکار</span><span class="val"><span id="ltKpiAuto">0</span> <small id="ltKpiAutoTotal">/ 0</small></span></div>
+      </div>
+
+      <div class="lt-tabs" id="ltTabs"></div>
+
+      <div class="lt-layout">
+       <div class="lt-main">
+          <div class="lt-scn-panel">
+              <span class="lbl">سناریوی روشنایی طبقه:</span>
+              <div class="lt-scn-list" id="ltScenarios"></div>
+              <div class="lt-master">
+                <button class="lt-btn" id="ltAllOn"><i class="fa-solid fa-power-off"></i> روشن همه</button>
+               <button class="lt-btn off" id="ltAllOff"><i class="fa-solid fa-power-off"></i> خاموش همه</button>
+            </div>
+          </div>
+        <div class="lt-zones" id="ltZones"></div>
+       </div>
+
+    <aside class="lt-side">
+      <div class="card">
+        <div class="card-title">روشنایی محوطه و نما</div>
+        <div id="ltOutdoor"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">زمان‌بندی خودکار</div>
+        <table class="lt-sched">
+          <tr><td>روشنایی نما و تابلو</td><td>۱۸:۰۰ – ۰۶:۰۰</td></tr>
+          <tr><td>ساعت کاری شعبه</td><td>۰۷:۳۰ – ۱۷:۰۰</td></tr>
+          <tr><td>روشنایی پارکینگ</td><td>۲۴ ساعته</td></tr>
+          <tr><td>خاموشی شبانه ادارات</td><td>۱۹:۰۰</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">سهم مصرف روشنایی طبقات</div>
+        <div id="ltShare"></div>
+      </div>
+    </aside>
+  </div>
+
+    </section>
+
       <!-- ============ GENERIC PLACEHOLDER (shared by remaining menu items) ============ -->
       <section class="screen" id="screen-generic">
         <div class="placeholder">
@@ -292,6 +342,7 @@
 
 <script src="./js/main.js"></script>
 <script src="./js/load-svg.js"></script>
+<script src="./js/lighting.js"></script>
 </body>
 </body>
 </html>
