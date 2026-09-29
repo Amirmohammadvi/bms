@@ -1,348 +1,535 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<title>Bank BMS - WinCC Unified Custom Web Control</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003/Vazirmatn-font-face.css">
-<link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8">
+  <title>Bank BMS - WinCC Unified Custom Web Control</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003/Vazirmatn-font-face.css">
+  <link rel="stylesheet" href="./styles.css">
 
   <script src="./js/screen.min.js"></script>
   <script src="./js/webcc.min.js"></script>
 </head>
+
 <body>
 
-<div class="stage" id="stage">
+  <div class="stage" id="stage">
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="brand">
-      <div class="mark"><i class="fa-solid fa-building-columns"></i></div>
-      <div>
-        <div class="name">Bank BMS</div>
-        <div class="sub">سامانه مدیریت هوشمند ساختمان &nbsp;|&nbsp; WinCC Unified</div>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="mark"><i class="fa-solid fa-building-columns"></i></div>
+        <div>
+          <div class="name">Bank BMS</div>
+          <div class="sub">سامانه مدیریت هوشمند ساختمان &nbsp;|&nbsp; WinCC Unified</div>
+        </div>
+      </div>
+      <div class="screen-title" id="screenTitle">داشبورد اصلی</div>
+      <div class="status-cluster">
+        <div class="stat"><span class="lbl">تاریخ</span><span class="val" id="jalaliDate">—</span></div>
+        <div class="stat"><span class="lbl">ساعت</span><span class="val" id="clock">—</span></div>
+        <div class="bell"><i class="fa-solid fa-bell"></i><span class="badge" id="alarmBadge">5</span></div>
+        <div class="user"><i class="fa-solid fa-circle-user"></i><span>اپراتور۰۱</span></div>
       </div>
     </div>
-    <div class="screen-title" id="screenTitle">داشبورد اصلی</div>
-    <div class="status-cluster">
-      <div class="stat"><span class="lbl">تاریخ</span><span class="val" id="jalaliDate">—</span></div>
-      <div class="stat"><span class="lbl">ساعت</span><span class="val" id="clock">—</span></div>
-      <div class="bell"><i class="fa-solid fa-bell"></i><span class="badge" id="alarmBadge">5</span></div>
-      <div class="user"><i class="fa-solid fa-circle-user"></i><span>اپراتور۰۱</span></div>
-    </div>
-  </div>
 
-  <div class="body">
-    <!-- SIDEBAR -->
-    <nav class="sidebar" id="sidebar">
-      <div class="nav-item active" data-screen="dashboard"><i class="fa-solid fa-gauge-high"></i>داشبورد اصلی</div>
-      <div class="nav-item" data-screen="floors"><i class="fa-solid fa-building"></i>نمای طبقات</div>
-      <div class="nav-item" data-screen="motorroom"><i class="fa-solid fa-industry"></i>موتورخانه</div>
-      <div class="nav-item" data-screen="power" data-title="برق و تابلوها" data-icon="fa-bolt"><i class="fa-solid fa-bolt"></i>برق و تابلوها</div>
-      <div class="nav-item" data-screen="hvac" data-title="HVAC" data-icon="fa-wind"><i class="fa-solid fa-wind"></i>HVAC</div>
-      <div class="nav-item" data-screen="lighting" data-title="روشنایی" data-icon="fa-lightbulb"><i class="fa-solid fa-lightbulb"></i>روشنایی</div>
-      <div class="nav-item" data-screen="fire" data-title="سیستم اعلام حریق" data-icon="fa-fire"><i class="fa-solid fa-fire"></i>اعلام حریق</div>
-      <div class="nav-item" data-screen="security" data-title="امنیت" data-icon="fa-shield-halved"><i class="fa-solid fa-shield-halved"></i>امنیت</div>
-      <div class="nav-item" data-screen="access" data-title="دسترسی بانک" data-icon="fa-key"><i class="fa-solid fa-key"></i>دسترسی بانک</div>
-      <div class="nav-item" data-screen="reports" data-title="گزارش‌ها" data-icon="fa-file-lines"><i class="fa-solid fa-file-lines"></i>گزارش‌ها</div>
-      <div class="nav-item" data-screen="settings" data-title="تنظیمات" data-icon="fa-gear"><i class="fa-solid fa-gear"></i>تنظیمات</div>
-      <div class="nav-spacer"></div>
-      <div class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i>خروج از سیستم</div>
-    </nav>
+    <div class="body">
+      <!-- SIDEBAR -->
+      <nav class="sidebar" id="sidebar">
+        <div class="nav-item active" data-screen="dashboard"><i class="fa-solid fa-gauge-high"></i>داشبورد اصلی</div>
+        <div class="nav-item" data-screen="floors"><i class="fa-solid fa-building"></i>نمای طبقات</div>
+        <div class="nav-item" data-screen="motorroom"><i class="fa-solid fa-industry"></i>موتورخانه</div>
+        <div class="nav-item" data-screen="power" data-title="برق و تابلوها" data-icon="fa-bolt"><i
+            class="fa-solid fa-bolt"></i>برق و تابلوها</div>
+        <div class="nav-item" data-screen="hvac" data-title="HVAC" data-icon="fa-wind"><i
+            class="fa-solid fa-wind"></i>HVAC</div>
+        <div class="nav-item" data-screen="lighting" data-title="روشنایی" data-icon="fa-lightbulb"><i
+            class="fa-solid fa-lightbulb"></i>روشنایی</div>
+        <div class="nav-item" data-screen="fire" data-title="سیستم اعلام حریق" data-icon="fa-fire"><i
+            class="fa-solid fa-fire"></i>اعلام حریق</div>
+        <div class="nav-item" data-screen="security" data-title="امنیت" data-icon="fa-shield-halved"><i
+            class="fa-solid fa-shield-halved"></i>امنیت</div>
+        <div class="nav-item" data-screen="access" data-title="دسترسی بانک" data-icon="fa-key"><i
+            class="fa-solid fa-key"></i>دسترسی بانک</div>
+        <div class="nav-item" data-screen="reports" data-title="گزارش‌ها" data-icon="fa-file-lines"><i
+            class="fa-solid fa-file-lines"></i>گزارش‌ها</div>
+        <div class="nav-item" data-screen="settings" data-title="تنظیمات" data-icon="fa-gear"><i
+            class="fa-solid fa-gear"></i>تنظیمات</div>
+        <div class="nav-spacer"></div>
+        <div class="nav-item logout"><i class="fa-solid fa-right-from-bracket"></i>خروج از سیستم</div>
+      </nav>
 
-    <!-- CONTENT -->
-    <main class="content">
+      <!-- CONTENT -->
+      <main class="content">
 
-      <!-- ============ DASHBOARD ============ -->
-      <section class="screen active" id="screen-dashboard">
-        <div class="kpi-row">
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف لحظه‌ای</span><span class="val"><span id="instantPower">--</span> <small>kW</small></span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-chart-line"></i> مصرف امروز</span><span class="val">1,245 <small>kWh</small></span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-calendar-days"></i> مصرف این ماه</span><span class="val">32,560 <small>kWh</small></span></div>
-          <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-triangle-exclamation"></i> هشدارهای فعال</span><span class="val">5</span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-temperature-half"></i> دمای بیرون</span><span class="val">28.4 <small>°C</small></span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet"></i> رطوبت بیرون</span><span class="val">42 <small>%</small></span></div>
-        </div>
-
-        <div class="dash-grid">
-          <!-- Column 1: building floors + weather -->
-          <div class="dash-col">
-            <div class="card">
-              <div class="card-title">نمای ساختمان — وضعیت طبقات</div>
-              <div class="floor-row"><span class="name">طبقه ۳</span><span class="metric"><i class="fa-solid fa-temperature-half"></i>23.1°C</span><span class="metric"><i class="fa-solid fa-droplet"></i>52%</span></div>
-              <div class="floor-row"><span class="name">طبقه ۲</span><span class="metric"><i class="fa-solid fa-temperature-half"></i>22.8°C</span><span class="metric"><i class="fa-solid fa-droplet"></i>48%</span></div>
-              <div class="floor-row"><span class="name">طبقه ۱</span><span class="metric"><i class="fa-solid fa-temperature-half"></i>23.0°C</span><span class="metric"><i class="fa-solid fa-droplet"></i>50%</span></div>
-              <div class="floor-row"><span class="name">همکف (شعبه)</span><span class="metric"><i class="fa-solid fa-temperature-half"></i>22.5°C</span><span class="metric"><i class="fa-solid fa-droplet"></i>45%</span></div>
-              <div class="floor-row"><span class="name">منفی ۱ (پارکینگ)</span><span class="metric"><i class="fa-solid fa-temperature-half"></i>20.1°C</span><span class="metric"><i class="fa-solid fa-droplet"></i>60%</span></div>
-            </div>
-
-            <div class="card">
-              <div class="card-title">هواشناسی</div>
-              <div class="weather-hero">
-                <i class="fa-solid fa-cloud-sun"></i>
-                <div><div class="deg">28.4°C</div><div style="font-size:12px;color:var(--text-muted);">نیمه ابری</div></div>
-              </div>
-              <div class="weather-row"><span>سرعت باد</span><b>12 km/h</b></div>
-              <div class="weather-row"><span>رطوبت</span><b>42%</b></div>
-            </div>
+        <!-- ============ DASHBOARD ============ -->
+        <section class="screen active" id="screen-dashboard">
+          <div class="kpi-row">
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف لحظه‌ای</span><span
+                class="val"><span id="instantPower">--</span> <small>kW</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-chart-line"></i> مصرف امروز</span><span
+                class="val">1,245 <small>kWh</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-calendar-days"></i> مصرف این ماه</span><span
+                class="val">32,560 <small>kWh</small></span></div>
+            <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-triangle-exclamation"></i> هشدارهای
+                فعال</span><span class="val">5</span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-temperature-half"></i> دمای بیرون</span><span
+                class="val">28.4 <small>°C</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet"></i> رطوبت بیرون</span><span
+                class="val">42 <small>%</small></span></div>
           </div>
 
-          <!-- Column 2: charts -->
-          <div class="dash-col">
-            <div class="card">
-              <div class="card-title">مصرف انرژی هر طبقه (kWh)</div>
-              <div class="bar-row"><span class="lbl">همکف (شعبه)</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">512.3</span></div>
-              <div class="bar-row"><span class="lbl">طبقه ۲</span><div class="bar-track"><div class="bar-fill" style="width:61%"></div></div><span class="bar-val">312.7</span></div>
-              <div class="bar-row"><span class="lbl">طبقه ۱</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="bar-val">298.1</span></div>
-              <div class="bar-row"><span class="lbl">طبقه ۳</span><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div><span class="bar-val">286.4</span></div>
-              <div class="bar-row"><span class="lbl">پارکینگ (منفی ۱)</span><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div><span class="bar-val">145.2</span></div>
-            </div>
-
-            <div class="card">
-              <div class="card-title">نمودار روند مصرف امروز (kW)</div>
-              <svg class="trend-svg" viewBox="0 0 600 130" preserveAspectRatio="none">
-                <polyline fill="none" stroke="#1f7ae0" stroke-width="2.5"
-                  points="0,95 60,92 120,88 180,80 240,60 300,35 340,20 380,30 420,50 480,70 540,85 600,90"/>
-                <circle cx="340" cy="20" r="4" fill="#d64545"/>
-                <text x="330" y="12" font-size="10" fill="#d64545">158.7kW · 10:30</text>
-                <line x1="0" y1="118" x2="600" y2="118" stroke="#e3e8f1" stroke-width="1"/>
-              </svg>
-              <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);">
-                <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+          <div class="dash-grid">
+            <!-- Column 1: building floors + weather -->
+            <div class="dash-col">
+              <div class="card">
+                <div class="card-title">نمای ساختمان — وضعیت طبقات</div>
+                <div class="floor-row"><span class="name">طبقه ۳</span><span class="metric"><i
+                      class="fa-solid fa-temperature-half"></i>23.1°C</span><span class="metric"><i
+                      class="fa-solid fa-droplet"></i>52%</span></div>
+                <div class="floor-row"><span class="name">طبقه ۲</span><span class="metric"><i
+                      class="fa-solid fa-temperature-half"></i>22.8°C</span><span class="metric"><i
+                      class="fa-solid fa-droplet"></i>48%</span></div>
+                <div class="floor-row"><span class="name">طبقه ۱</span><span class="metric"><i
+                      class="fa-solid fa-temperature-half"></i>23.0°C</span><span class="metric"><i
+                      class="fa-solid fa-droplet"></i>50%</span></div>
+                <div class="floor-row"><span class="name">همکف (شعبه)</span><span class="metric"><i
+                      class="fa-solid fa-temperature-half"></i>22.5°C</span><span class="metric"><i
+                      class="fa-solid fa-droplet"></i>45%</span></div>
+                <div class="floor-row"><span class="name">منفی ۱ (پارکینگ)</span><span class="metric"><i
+                      class="fa-solid fa-temperature-half"></i>20.1°C</span><span class="metric"><i
+                      class="fa-solid fa-droplet"></i>60%</span></div>
               </div>
-            </div>
 
-            <div class="card">
-              <div class="card-title">آخرین هشدارها</div>
-              <table class="alarms">
-                <tr><td class="time">10:28</td><td class="icon"><i class="fa-solid fa-temperature-high"></i></td><td>دمای اتاق سرور بیش از حد مجاز است</td></tr>
-                <tr><td class="time">10:25</td><td class="icon"><i class="fa-solid fa-bolt"></i></td><td>اضافه جریان در تابلو T-2</td></tr>
-                <tr><td class="time">10:20</td><td class="icon"><i class="fa-solid fa-plug-circle-xmark"></i></td><td>قطع ارتباط با کنتور طبقه ۳</td></tr>
-                <tr><td class="time">10:15</td><td class="icon"><i class="fa-solid fa-gas-pump"></i></td><td>سطح سوخت ژنراتور پایین است</td></tr>
-                <tr><td class="time">10:10</td><td class="icon"><i class="fa-solid fa-droplet"></i></td><td>نشتی آب در اتاق تاسیسات منفی ۱</td></tr>
-              </table>
-            </div>
-          </div>
-
-          <!-- Column 3: distribution + equipment -->
-          <div class="dash-col">
-            <div class="card">
-              <div class="card-title">توزیع مصرف انرژی</div>
-              <div class="donut-wrap">
-                <div class="donut" style="background:conic-gradient(#1f7ae0 0 48%, #e0932e 48% 66%, #1f9d55 66% 90%, #9b6bd6 90% 100%);">
-                  <div class="hole"><b>100%</b><span>کل مصرف</span></div>
+              <div class="card">
+                <div class="card-title">هواشناسی</div>
+                <div class="weather-hero">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                  <div>
+                    <div class="deg">28.4°C</div>
+                    <div style="font-size:12px;color:var(--text-muted);">نیمه ابری</div>
+                  </div>
                 </div>
-                <div class="legend">
-                  <div class="row"><span class="sw" style="background:#1f7ae0;"></span>HVAC — 48%</div>
-                  <div class="row"><span class="sw" style="background:#e0932e;"></span>روشنایی — 18%</div>
-                  <div class="row"><span class="sw" style="background:#1f9d55;"></span>پریزها — 24%</div>
-                  <div class="row"><span class="sw" style="background:#9b6bd6;"></span>سایر — 10%</div>
+                <div class="weather-row"><span>سرعت باد</span><b>12 km/h</b></div>
+                <div class="weather-row"><span>رطوبت</span><b>42%</b></div>
+              </div>
+            </div>
+
+            <!-- Column 2: charts -->
+            <div class="dash-col">
+              <div class="card">
+                <div class="card-title">مصرف انرژی هر طبقه (kWh)</div>
+                <div class="bar-row"><span class="lbl">همکف (شعبه)</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:100%"></div>
+                  </div><span class="bar-val">512.3</span>
+                </div>
+                <div class="bar-row"><span class="lbl">طبقه ۲</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:61%"></div>
+                  </div><span class="bar-val">312.7</span>
+                </div>
+                <div class="bar-row"><span class="lbl">طبقه ۱</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:58%"></div>
+                  </div><span class="bar-val">298.1</span>
+                </div>
+                <div class="bar-row"><span class="lbl">طبقه ۳</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:56%"></div>
+                  </div><span class="bar-val">286.4</span>
+                </div>
+                <div class="bar-row"><span class="lbl">پارکینگ (منفی ۱)</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:28%"></div>
+                  </div><span class="bar-val">145.2</span>
                 </div>
               </div>
+
+              <div class="card">
+                <div class="card-title">نمودار روند مصرف امروز (kW)</div>
+                <svg class="trend-svg" viewBox="0 0 600 130" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#1f7ae0" stroke-width="2.5"
+                    points="0,95 60,92 120,88 180,80 240,60 300,35 340,20 380,30 420,50 480,70 540,85 600,90" />
+                  <circle cx="340" cy="20" r="4" fill="#d64545" />
+                  <text x="330" y="12" font-size="10" fill="#d64545">158.7kW · 10:30</text>
+                  <line x1="0" y1="118" x2="600" y2="118" stroke="#e3e8f1" stroke-width="1" />
+                </svg>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);">
+                  <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">آخرین هشدارها</div>
+                <table class="alarms">
+                  <tr>
+                    <td class="time">10:28</td>
+                    <td class="icon"><i class="fa-solid fa-temperature-high"></i></td>
+                    <td>دمای اتاق سرور بیش از حد مجاز است</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:25</td>
+                    <td class="icon"><i class="fa-solid fa-bolt"></i></td>
+                    <td>اضافه جریان در تابلو T-2</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:20</td>
+                    <td class="icon"><i class="fa-solid fa-plug-circle-xmark"></i></td>
+                    <td>قطع ارتباط با کنتور طبقه ۳</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:15</td>
+                    <td class="icon"><i class="fa-solid fa-gas-pump"></i></td>
+                    <td>سطح سوخت ژنراتور پایین است</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:10</td>
+                    <td class="icon"><i class="fa-solid fa-droplet"></i></td>
+                    <td>نشتی آب در اتاق تاسیسات منفی ۱</td>
+                  </tr>
+                </table>
+              </div>
             </div>
 
-            <div class="card">
-              <div class="card-title">وضعیت تجهیزات اصلی</div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>چیلر ۱</span><span class="pill good">روشن</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-bad"></span>چیلر ۲</span><span class="pill bad">خاموش</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>هواساز طبقه ۱</span><span class="pill good">روشن</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>هواساز طبقه ۲</span><span class="pill good">روشن</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>پمپ آب سرد ۱</span><span class="pill good">روشن</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-warn"></span>پمپ آب سرد ۲</span><span class="pill warn">آماده</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-bad"></span>ژنراتور</span><span class="pill bad">خاموش</span></div>
-              <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>UPS</span><span class="pill good">نرمال</span></div>
+            <!-- Column 3: distribution + equipment -->
+            <div class="dash-col">
+              <div class="card">
+                <div class="card-title">توزیع مصرف انرژی</div>
+                <div class="donut-wrap">
+                  <div class="donut"
+                    style="background:conic-gradient(#1f7ae0 0 48%, #e0932e 48% 66%, #1f9d55 66% 90%, #9b6bd6 90% 100%);">
+                    <div class="hole"><b>100%</b><span>کل مصرف</span></div>
+                  </div>
+                  <div class="legend">
+                    <div class="row"><span class="sw" style="background:#1f7ae0;"></span>HVAC — 48%</div>
+                    <div class="row"><span class="sw" style="background:#e0932e;"></span>روشنایی — 18%</div>
+                    <div class="row"><span class="sw" style="background:#1f9d55;"></span>پریزها — 24%</div>
+                    <div class="row"><span class="sw" style="background:#9b6bd6;"></span>سایر — 10%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">وضعیت تجهیزات اصلی</div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>چیلر ۱</span><span
+                    class="pill good">روشن</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-bad"></span>چیلر ۲</span><span
+                    class="pill bad">خاموش</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>هواساز طبقه
+                    ۱</span><span class="pill good">روشن</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>هواساز طبقه
+                    ۲</span><span class="pill good">روشن</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>پمپ آب سرد
+                    ۱</span><span class="pill good">روشن</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-warn"></span>پمپ آب سرد
+                    ۲</span><span class="pill warn">آماده</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-bad"></span>ژنراتور</span><span
+                    class="pill bad">خاموش</span></div>
+                <div class="floor-row"><span class="name"><span class="status-dot dot-good"></span>UPS</span><span
+                    class="pill good">نرمال</span></div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ============ FLOORS ============ -->
-      <section class="screen" id="screen-floors">
-        <div class="floor-tabs">
-          <div class="floor-tab active" data-floor="ground">همکف (شعبه بانک)</div>
-          <div class="floor-tab" data-floor="f1">طبقه اول</div>
-          <div class="floor-tab" data-floor="f2">طبقه دوم</div>
-          <div class="floor-tab" data-floor="f3">طبقه سوم</div>
-        </div>
-        <div class="floor-header">
-          <h2 id="floorTitle">همکف - شعبه بانک</h2>
-        </div>
-        <div class="room-grid" id="roomGrid"></div>
-        <div id="scenarioSlot"></div>
-        <div class="floor-footer" id="floorFooter"></div>
-      </section>
+        <!-- ============ FLOORS ============ -->
+        <section class="screen" id="screen-floors">
+          <div class="floor-tabs">
+            <div class="floor-tab active" data-floor="ground">همکف (شعبه بانک)</div>
+            <div class="floor-tab" data-floor="f1">طبقه اول</div>
+            <div class="floor-tab" data-floor="f2">طبقه دوم</div>
+            <div class="floor-tab" data-floor="f3">طبقه سوم</div>
+          </div>
+          <div class="floor-header">
+            <h2 id="floorTitle">همکف - شعبه بانک</h2>
+          </div>
+          <div class="room-grid" id="roomGrid"></div>
+          <div id="scenarioSlot"></div>
+          <div class="floor-footer" id="floorFooter"></div>
+        </section>
 
-      <!-- ============ MOTOR ROOM ============ -->
-      <section class="screen" id="screen-motorroom">
-        <div class="mr-kpi-row">
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet"></i> رطوبت نسبی موتورخانه</span><span class="val">48 <small>%</small></span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-wind"></i> وضعیت تهویه</span><span class="val" style="font-size:16px;color:var(--good);">عادی</span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet-slash"></i> وضعیت نشت آب</span><span class="val" style="font-size:16px;color:var(--good);">عادی</span></div>
-          <div class="kpi"><span class="lbl"><i class="fa-solid fa-fire-extinguisher"></i> سیستم اطفاء حریق</span><span class="val" style="font-size:16px;color:var(--good);">عادی</span></div>
-          <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-bell"></i> هشدارهای فعال</span><span class="val">2</span></div>
-        </div>
+        <!-- ============ MOTOR ROOM ============ -->
+        <section class="screen" id="screen-motorroom">
+          <div class="mr-kpi-row">
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet"></i> رطوبت نسبی موتورخانه</span><span
+                class="val">48 <small>%</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-wind"></i> وضعیت تهویه</span><span class="val"
+                style="font-size:16px;color:var(--good);">عادی</span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-droplet-slash"></i> وضعیت نشت آب</span><span
+                class="val" style="font-size:16px;color:var(--good);">عادی</span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-fire-extinguisher"></i> سیستم اطفاء
+                حریق</span><span class="val" style="font-size:16px;color:var(--good);">عادی</span></div>
+            <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-bell"></i> هشدارهای فعال</span><span
+                class="val">2</span></div>
+          </div>
 
-        <div class="card mr-diagram-card">
-          <div class="card-title">شماتیک فرآیند موتورخانه</div>
-          <!--<img src="images/final/chiller.svg" width="120%" height="60%">
+          <div class="card mr-diagram-card">
+            <div class="card-title">شماتیک فرآیند موتورخانه</div>
+            <!--<img src="images/final/chiller.svg" width="120%" height="60%">
           <img src="images/final/firestation.svg" width="100%" height="50%">-->
-          <img src="images/final/maindiv.svg" width="100%" height="650vw" background="withe">
-          <div class="pipe-legend">
-            <span class="item"><span class="swatch" style="background:#d64545;"></span>آب آتش‌نشانی</span>
-            <span class="item"><span class="swatch" style="background:#1f7ae0;"></span>آب مصرفی / آب سرد رفت</span>
-            <span class="item"><span class="swatch" style="background:#7db8f5;border:1px dashed #1f7ae0;"></span>آب سرد برگشت</span>
-            <span class="item"><span class="swatch" style="background:#1f9d55;"></span>آب برج خنک‌کننده (کندانسور)</span>
-            <span class="item"><span class="dot" style="background:#1f9d55;"></span>روشن</span>
-            <span class="item"><span class="dot" style="background:#e0932e;"></span>آماده / استندبای</span>
-          </div>
-        </div>
-
-        <div class="eq-row">
-          <div class="eq-tile">
-            <svg viewBox="0 0 64 64">
-              <use href="#pumpIcon" x="2" y="18" width="26" height="32"></use>
-              <use href="#pumpIcon" x="30" y="18" width="26" height="32"></use>
-              <polygon points="46,4 56,20 36,20" fill="#e0932e"></polygon>
-              <text x="46" y="17" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">!</text>
-            </svg>
-            <div class="eq-body">
-              <h4>پمپ‌های مدار گرمایش</h4>
-              <div class="kv-row"><span class="k">وضعیت</span><span class="v" style="color:var(--warn);">نیازمند بازدید</span></div>
-              <div class="kv-row"><span class="k">دمای رفت</span><span class="v">45.0 °C</span></div>
-              <div class="kv-row"><span class="k">دمای برگشت</span><span class="v">38.2 °C</span></div>
+            <img src="images/final/maindiv.svg" width="100%" height="650vw" background="withe">
+            <div class="pipe-legend">
+              <span class="item"><span class="swatch" style="background:#d64545;"></span>آب آتش‌نشانی</span>
+              <span class="item"><span class="swatch" style="background:#1f7ae0;"></span>آب مصرفی / آب سرد رفت</span>
+              <span class="item"><span class="swatch" style="background:#7db8f5;border:1px dashed #1f7ae0;"></span>آب
+                سرد برگشت</span>
+              <span class="item"><span class="swatch" style="background:#1f9d55;"></span>آب برج خنک‌کننده
+                (کندانسور)</span>
+              <span class="item"><span class="dot" style="background:#1f9d55;"></span>روشن</span>
+              <span class="item"><span class="dot" style="background:#e0932e;"></span>آماده / استندبای</span>
             </div>
           </div>
 
-          <div class="eq-tile">
-            <svg viewBox="0 0 64 64">
-              <ellipse cx="32" cy="14" rx="20" ry="6" fill="#f0e6cf" stroke="#a98b4a" stroke-width="2"></ellipse>
-              <rect x="12" y="14" width="40" height="40" fill="#f6efdc" stroke="#a98b4a" stroke-width="2"></rect>
-              <ellipse cx="32" cy="54" rx="20" ry="6" fill="#e9dcb8" stroke="#a98b4a" stroke-width="2"></ellipse>
-              <line x1="20" y1="24" x2="44" y2="24" stroke="#c9b787" stroke-width="2"></line>
-              <line x1="20" y1="34" x2="44" y2="34" stroke="#c9b787" stroke-width="2"></line>
-              <line x1="20" y1="44" x2="44" y2="44" stroke="#c9b787" stroke-width="2"></line>
-            </svg>
-            <div class="eq-body">
-              <h4>فیلتر شنی</h4>
-              <div class="kv-row"><span class="k">فشار ورودی</span><span class="v">2.3 Bar</span></div>
-              <div class="kv-row"><span class="k">فشار خروجی</span><span class="v">1.6 Bar</span></div>
+          <div class="eq-row">
+            <div class="eq-tile">
+              <svg viewBox="0 0 64 64">
+                <use href="#pumpIcon" x="2" y="18" width="26" height="32"></use>
+                <use href="#pumpIcon" x="30" y="18" width="26" height="32"></use>
+                <polygon points="46,4 56,20 36,20" fill="#e0932e"></polygon>
+                <text x="46" y="17" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">!</text>
+              </svg>
+              <div class="eq-body">
+                <h4>پمپ‌های مدار گرمایش</h4>
+                <div class="kv-row"><span class="k">وضعیت</span><span class="v" style="color:var(--warn);">نیازمند
+                    بازدید</span></div>
+                <div class="kv-row"><span class="k">دمای رفت</span><span class="v">45.0 °C</span></div>
+                <div class="kv-row"><span class="k">دمای برگشت</span><span class="v">38.2 °C</span></div>
+              </div>
+            </div>
+
+            <div class="eq-tile">
+              <svg viewBox="0 0 64 64">
+                <ellipse cx="32" cy="14" rx="20" ry="6" fill="#f0e6cf" stroke="#a98b4a" stroke-width="2"></ellipse>
+                <rect x="12" y="14" width="40" height="40" fill="#f6efdc" stroke="#a98b4a" stroke-width="2"></rect>
+                <ellipse cx="32" cy="54" rx="20" ry="6" fill="#e9dcb8" stroke="#a98b4a" stroke-width="2"></ellipse>
+                <line x1="20" y1="24" x2="44" y2="24" stroke="#c9b787" stroke-width="2"></line>
+                <line x1="20" y1="34" x2="44" y2="34" stroke="#c9b787" stroke-width="2"></line>
+                <line x1="20" y1="44" x2="44" y2="44" stroke="#c9b787" stroke-width="2"></line>
+              </svg>
+              <div class="eq-body">
+                <h4>فیلتر شنی</h4>
+                <div class="kv-row"><span class="k">فشار ورودی</span><span class="v">2.3 Bar</span></div>
+                <div class="kv-row"><span class="k">فشار خروجی</span><span class="v">1.6 Bar</span></div>
+              </div>
+            </div>
+
+            <div class="eq-tile">
+              <svg viewBox="0 0 64 64">
+                <rect x="20" y="4" width="8" height="12" rx="2" fill="#8b97b8"></rect>
+                <rect x="8" y="16" width="48" height="40" rx="6" fill="#eef1f6" stroke="#26365a" stroke-width="2">
+                </rect>
+                <circle cx="46" cy="26" r="5" fill="#8b97b8"></circle>
+                <line x1="16" y1="38" x2="48" y2="38" stroke="#c7cede" stroke-width="2"></line>
+                <line x1="16" y1="46" x2="48" y2="46" stroke="#c7cede" stroke-width="2"></line>
+              </svg>
+              <div class="eq-body">
+                <h4>دیگ (پکیج)</h4>
+                <div class="kv-row"><span class="k">وضعیت</span><span class="v"
+                    style="color:var(--text-muted);">خاموش</span></div>
+                <div class="kv-row"><span class="k">دمای رفت / برگشت</span><span class="v">— / —</span></div>
+              </div>
+            </div>
+
+            <div class="eq-tile">
+              <svg viewBox="0 0 64 64">
+                <ellipse cx="20" cy="16" rx="12" ry="4" fill="#dfeaf7" stroke="#1f7ae0" stroke-width="2"></ellipse>
+                <rect x="8" y="16" width="24" height="34" fill="#eaf3fc" stroke="#1f7ae0" stroke-width="2"></rect>
+                <ellipse cx="20" cy="50" rx="12" ry="4" fill="#cfe3f7" stroke="#1f7ae0" stroke-width="2"></ellipse>
+                <ellipse cx="44" cy="16" rx="12" ry="4" fill="#dfeaf7" stroke="#1f7ae0" stroke-width="2"></ellipse>
+                <rect x="32" y="16" width="24" height="34" fill="#eaf3fc" stroke="#1f7ae0" stroke-width="2"></rect>
+                <ellipse cx="44" cy="50" rx="12" ry="4" fill="#cfe3f7" stroke="#1f7ae0" stroke-width="2"></ellipse>
+              </svg>
+              <div class="eq-body">
+                <h4>سختی‌گیر آب</h4>
+                <div class="kv-row"><span class="k">رزین باقی‌مانده</span><span class="v">65%</span></div>
+                <div class="kv-row"><span class="k">زمان تا احیای بعدی</span><span class="v">۳ روز</span></div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="eq-tile">
-            <svg viewBox="0 0 64 64">
-              <rect x="20" y="4" width="8" height="12" rx="2" fill="#8b97b8"></rect>
-              <rect x="8" y="16" width="48" height="40" rx="6" fill="#eef1f6" stroke="#26365a" stroke-width="2"></rect>
-              <circle cx="46" cy="26" r="5" fill="#8b97b8"></circle>
-              <line x1="16" y1="38" x2="48" y2="38" stroke="#c7cede" stroke-width="2"></line>
-              <line x1="16" y1="46" x2="48" y2="46" stroke="#c7cede" stroke-width="2"></line>
-            </svg>
-            <div class="eq-body">
-              <h4>دیگ (پکیج)</h4>
-              <div class="kv-row"><span class="k">وضعیت</span><span class="v" style="color:var(--text-muted);">خاموش</span></div>
-              <div class="kv-row"><span class="k">دمای رفت / برگشت</span><span class="v">— / —</span></div>
-            </div>
+        <!-- ============ POWER ============ -->
+        <section class="screen" id="screen-power">
+          <div class="card mr-diagram-card">
+            <img src="images/final/panelsdiv.svg" width="100%" height="100%">
           </div>
+        </section>
 
-          <div class="eq-tile">
-            <svg viewBox="0 0 64 64">
-              <ellipse cx="20" cy="16" rx="12" ry="4" fill="#dfeaf7" stroke="#1f7ae0" stroke-width="2"></ellipse>
-              <rect x="8" y="16" width="24" height="34" fill="#eaf3fc" stroke="#1f7ae0" stroke-width="2"></rect>
-              <ellipse cx="20" cy="50" rx="12" ry="4" fill="#cfe3f7" stroke="#1f7ae0" stroke-width="2"></ellipse>
-              <ellipse cx="44" cy="16" rx="12" ry="4" fill="#dfeaf7" stroke="#1f7ae0" stroke-width="2"></ellipse>
-              <rect x="32" y="16" width="24" height="34" fill="#eaf3fc" stroke="#1f7ae0" stroke-width="2"></rect>
-              <ellipse cx="44" cy="50" rx="12" ry="4" fill="#cfe3f7" stroke="#1f7ae0" stroke-width="2"></ellipse>
-            </svg>
-            <div class="eq-body">
-              <h4>سختی‌گیر آب</h4>
-              <div class="kv-row"><span class="k">رزین باقی‌مانده</span><span class="v">65%</span></div>
-              <div class="kv-row"><span class="k">زمان تا احیای بعدی</span><span class="v">۳ روز</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-       <!-- ============ POWER ============ -->
-      <section class="screen" id="screen-power">
-        <div class="card mr-diagram-card">
-          <img src="images/final/panelsdiv.svg" width="100%" height="100%">
-        </div>
-      </section>
-
-      <!-- ============ LIGHTING ============
+        <!-- ============ LIGHTING ============
      این بلوک را در index.html، داخل <main class="content">
      و قبل از <section id="screen-generic"> قرار بده. -->
-    <section class="screen" id="screen-lighting">
+        <section class="screen" id="screen-lighting">
 
-      <div class="lt-kpis">
-        <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف روشنایی</span><span class="val"><span id="ltKpiPower">0</span> <small>kW</small></span></div>
-        <div class="kpi"><span class="lbl"><i class="fa-solid fa-lightbulb"></i> مدارهای روشن</span><span class="val"><span id="ltKpiOn">0</span> <small id="ltKpiTotal">/ 0</small></span></div>
-        <div class="kpi"><span class="lbl"><i class="fa-solid fa-sun"></i> میانگین شدت نور</span><span class="val"><span id="ltKpiAvg">0</span> <small>%</small></span></div>
-        <div class="kpi"><span class="lbl"><i class="fa-solid fa-robot"></i> مناطق در حالت خودکار</span><span class="val"><span id="ltKpiAuto">0</span> <small id="ltKpiAutoTotal">/ 0</small></span></div>
-      </div>
-
-      <div class="lt-tabs" id="ltTabs"></div>
-
-      <div class="lt-layout">
-       <div class="lt-main">
-          <div class="lt-scn-panel">
-              <span class="lbl">سناریوی روشنایی طبقه:</span>
-              <div class="lt-scn-list" id="ltScenarios"></div>
-              <div class="lt-master">
-                <button class="lt-btn" id="ltAllOn"><i class="fa-solid fa-power-off"></i> روشن همه</button>
-               <button class="lt-btn off" id="ltAllOff"><i class="fa-solid fa-power-off"></i> خاموش همه</button>
-            </div>
+          <div class="lt-kpis">
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف روشنایی</span><span
+                class="val"><span id="ltKpiPower">0</span> <small>kW</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-lightbulb"></i> مدارهای روشن</span><span
+                class="val"><span id="ltKpiOn">0</span> <small id="ltKpiTotal">/ 0</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-sun"></i> میانگین شدت نور</span><span
+                class="val"><span id="ltKpiAvg">0</span> <small>%</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-robot"></i> مناطق در حالت خودکار</span><span
+                class="val"><span id="ltKpiAuto">0</span> <small id="ltKpiAutoTotal">/ 0</small></span></div>
           </div>
-        <div class="lt-zones" id="ltZones"></div>
-       </div>
 
-    <aside class="lt-side">
-      <div class="card">
-        <div class="card-title">روشنایی محوطه و نما</div>
-        <div id="ltOutdoor"></div>
-      </div>
-      <div class="card">
-        <div class="card-title">زمان‌بندی خودکار</div>
-        <table class="lt-sched">
-          <tr><td>روشنایی نما و تابلو</td><td>۱۸:۰۰ – ۰۶:۰۰</td></tr>
-          <tr><td>ساعت کاری شعبه</td><td>۰۷:۳۰ – ۱۷:۰۰</td></tr>
-          <tr><td>روشنایی پارکینگ</td><td>۲۴ ساعته</td></tr>
-          <tr><td>خاموشی شبانه ادارات</td><td>۱۹:۰۰</td></tr>
-        </table>
-      </div>
-      <div class="card">
-        <div class="card-title">سهم مصرف روشنایی طبقات</div>
-        <div id="ltShare"></div>
-      </div>
-    </aside>
-  </div>
+          <div class="lt-tabs" id="ltTabs"></div>
 
-    </section>
+          <div class="lt-layout">
+            <div class="lt-main">
+              <div class="lt-scn-panel">
+                <span class="lbl">سناریوی روشنایی طبقه:</span>
+                <div class="lt-scn-list" id="ltScenarios"></div>
+                <div class="lt-master">
+                  <button class="lt-btn" id="ltAllOn"><i class="fa-solid fa-power-off"></i> روشن همه</button>
+                  <button class="lt-btn off" id="ltAllOff"><i class="fa-solid fa-power-off"></i> خاموش همه</button>
+                </div>
+              </div>
+              <div class="lt-zones" id="ltZones"></div>
+            </div>
 
-      <!-- ============ GENERIC PLACEHOLDER (shared by remaining menu items) ============ -->
-      <section class="screen" id="screen-generic">
-        <div class="placeholder">
-          <i class="fa-solid fa-gear" id="ph-icon"></i>
-          <h2 id="ph-title">این بخش</h2>
-          <p>این صفحه در فاز بعدی پروژه، پس از اتصال به تگ‌های زنده WinCC Unified، تکمیل و طراحی نهایی می‌شود.</p>
-        </div>
-      </section>
+            <aside class="lt-side">
+              <div class="card">
+                <div class="card-title">روشنایی محوطه و نما</div>
+                <div id="ltOutdoor"></div>
+              </div>
+              <div class="card">
+                <div class="card-title">زمان‌بندی خودکار</div>
+                <table class="lt-sched">
+                  <tr>
+                    <td>روشنایی نما و تابلو</td>
+                    <td>۱۸:۰۰ – ۰۶:۰۰</td>
+                  </tr>
+                  <tr>
+                    <td>ساعت کاری شعبه</td>
+                    <td>۰۷:۳۰ – ۱۷:۰۰</td>
+                  </tr>
+                  <tr>
+                    <td>روشنایی پارکینگ</td>
+                    <td>۲۴ ساعته</td>
+                  </tr>
+                  <tr>
+                    <td>خاموشی شبانه ادارات</td>
+                    <td>۱۹:۰۰</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="card">
+                <div class="card-title">سهم مصرف روشنایی طبقات</div>
+                <div id="ltShare"></div>
+              </div>
+            </aside>
+          </div>
 
-    </main>
-  </div>
+        </section>
 
-  <footer class="statusbar">
-    <span>Bank BMS &nbsp;|&nbsp; نسخه پیش‌نمایش HTML &nbsp;|&nbsp; حالت نمایش (Demo Mode)</span>
-    <div class="r-group">
-      <span><i class="fa-solid fa-circle" style="color:#1f9d55;font-size:8px;"></i> ارتباط با PLC: برقرار</span>
-      <span>1920×1080</span>
+
+        <!-- ============ FIRE ALARM ============
+     این بلوک را در index.html، داخل <main class="content">
+     و قبل از <section id="screen-generic"> قرار بده. -->
+        <section class="screen" id="screen-fire">
+
+          <div class="fr-banner normal" id="frBanner">
+            <i class="fa-solid fa-shield-halved" id="frBannerIcon"></i>
+            <span class="fr-banner-text" id="frBannerText">سیستم اعلام حریق در وضعیت عادی است</span>
+            <span class="fr-banner-sub" id="frBannerSub"></span>
+          </div>
+
+          <div class="fr-kpis">
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-satellite-dish"></i> کل دتکتورها</span><span
+                class="val"><span id="frKpiTotal">0</span></span></div>
+            <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-fire"></i> آلارم حریق</span><span
+                class="val"><span id="frKpiAlarm">0</span></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-triangle-exclamation"
+                  style="color:var(--warn)"></i> خطا (Trouble)</span><span class="val" style="color:var(--warn)"><span
+                  id="frKpiFault">0</span></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-ban"></i> غیرفعال (Bypass)</span><span
+                class="val"><span id="frKpiOff">0</span></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-bullhorn"></i> وضعیت آژیرها</span><span class="val"
+                style="font-size:16px;" id="frKpiSiren">خاموش</span></div>
+          </div>
+
+          <div class="fr-tabs" id="frTabs"></div>
+
+          <div class="fr-layout">
+            <div class="fr-main">
+              <div class="fr-zones" id="frZones"></div>
+
+              <div class="card">
+                <div class="card-title">رویدادهای اخیر سیستم اعلام حریق</div>
+                <table class="alarms" id="frLog"></table>
+              </div>
+            </div>
+
+            <aside class="fr-side">
+              <div class="card">
+                <div class="card-title">کنترل مرکزی</div>
+                <div class="fr-ctrl">
+                  <button class="fr-cbtn" id="frSilence"><i class="fa-solid fa-volume-xmark"></i> خاموش کردن
+                    آژیر</button>
+                  <button class="fr-cbtn" id="frReset"><i class="fa-solid fa-rotate-left"></i> بازنشانی سیستم</button>
+                  <button class="fr-cbtn" id="frTest"><i class="fa-solid fa-vial"></i> تست سیستم</button>
+                  <button class="fr-cbtn danger" id="frEvac"><i class="fa-solid fa-person-running"></i> تخلیه
+                    اضطراری</button>
+                  <button class="fr-cbtn sim" id="frSim"><i class="fa-solid fa-flask"></i> شبیه‌سازی آلارم
+                    (دمو)</button>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">سیستم اطفاء و تجهیزات ایمنی</div>
+                <div id="frStatus"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">راهنما</div>
+                <div class="fr-legend">
+                  <span><i class="fa-solid fa-smog"></i> دود</span>
+                  <span><i class="fa-solid fa-temperature-arrow-up"></i> حرارت</span>
+                  <span><i class="fa-solid fa-hand"></i> شستی</span>
+                  <span><i class="fa-solid fa-droplet"></i> جریان آب</span>
+                </div>
+                <div class="fr-legend" style="margin-top:8px;">
+                  <span><b class="lg ok"></b> عادی</span>
+                  <span><b class="lg alarm"></b> آلارم</span>
+                  <span><b class="lg fault"></b> خطا</span>
+                  <span><b class="lg off"></b> غیرفعال</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">با کلیک روی هر دتکتور، آن را
+                  غیرفعال/فعال کنید.</div>
+              </div>
+            </aside>
+          </div>
+
+        </section>
+
+
+        <!-- ============ GENERIC PLACEHOLDER (shared by remaining menu items) ============ -->
+        <section class="screen" id="screen-generic">
+          <div class="placeholder">
+            <i class="fa-solid fa-gear" id="ph-icon"></i>
+            <h2 id="ph-title">این بخش</h2>
+            <p>این صفحه در فاز بعدی پروژه، پس از اتصال به تگ‌های زنده WinCC Unified، تکمیل و طراحی نهایی می‌شود.</p>
+          </div>
+        </section>
+
+      </main>
     </div>
-  </footer>
-</div>
 
-<script src="./js/main.js"></script>
-<script src="./js/load-svg.js"></script>
-<script src="./js/lighting.js"></script>
+    <footer class="statusbar">
+      <span>Bank BMS &nbsp;|&nbsp; نسخه پیش‌نمایش HTML &nbsp;|&nbsp; حالت نمایش (Demo Mode)</span>
+      <div class="r-group">
+        <span><i class="fa-solid fa-circle" style="color:#1f9d55;font-size:8px;"></i> ارتباط با PLC: برقرار</span>
+        <span>1920×1080</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/load-svg.js"></script>
+  <script src="./js/lighting.js"></script>
+  <script src="./js/fire.js"></script>
 </body>
 </body>
+
 </html>
