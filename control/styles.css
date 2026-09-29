@@ -96,7 +96,7 @@
     padding:14px 16px;
   }
   .card-title{
-    font-size:12.5px;font-weight:700;color:var(--text-muted);
+    font-size:15px;font-weight:700;color:var(--text-muted);
     margin:0 0 10px 0;display:flex;align-items:center;justify-content:space-between;
   }
   .grid{display:grid;gap:14px;}
@@ -128,7 +128,7 @@
 
   .floor-row{
     display:flex;align-items:center;justify-content:space-between;
-    padding:9px 4px;border-bottom:1px dashed #e3e8f1;font-size:12.5px;
+    padding:9px 4px;border-bottom:1px dashed #e3e8f1;font-size:15px;
   }
   .floor-row:last-child{border-bottom:none;}
   .floor-row .name{font-weight:600;width:34%;}
@@ -142,7 +142,7 @@
 
   .donut-wrap{display:flex;align-items:center;gap:18px;}
   .donut{
-    width:120px;height:120px;border-radius:50%;flex:0 0 auto;
+    width:150px;height:150px;border-radius:50%;flex:0 0 auto;
     display:flex;align-items:center;justify-content:center;
   }
   .donut .hole{width:64px;height:64px;background:var(--card);border-radius:50%;
@@ -153,10 +153,10 @@
   .legend .row{display:flex;align-items:center;gap:8px;}
   .legend .sw{width:10px;height:10px;border-radius:3px;flex:0 0 auto;}
 
-  table.alarms{width:100%;border-collapse:collapse;font-size:12px;}
+  table.alarms{width:100%;border-collapse:collapse;font-size:20px;color:var(--bad);}
   table.alarms td{padding:6px 2px;border-bottom:1px solid #eef1f7;vertical-align:top;}
   table.alarms td.time{color:var(--text-muted);width:56px;white-space:nowrap;}
-  table.alarms td.icon{width:26px;color:var(--warn);}
+  table.alarms td.icon{width:26px;color:var(--bad);}
 
   .trend-svg{width:100%;height:130px;}
   .weather-row{display:flex;align-items:center;justify-content:space-between;padding:6px 2px;font-size:12.5px;border-bottom:1px dashed #eef1f7;}
@@ -432,3 +432,87 @@
 table.alarms td.lvl-alarm{color:var(--bad);font-weight:700;}
 table.alarms td.lvl-fault{color:var(--warn);font-weight:600;}
 table.alarms td.lvl-info{color:var(--text-dark);}
+
+/* ===== HVAC SCREEN (اضافه به انتهای styles.css) ===== */
+.hv-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:14px;}
+
+.hv-tabs{display:flex;gap:8px;margin-bottom:14px;}
+.hv-tab{
+  padding:9px 20px;border-radius:8px;background:var(--card);border:1px solid #e3e8f1;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;
+}
+.hv-tab.active{background:var(--navy-800);color:#fff;border-color:var(--navy-800);}
+
+.hv-layout{display:grid;grid-template-columns:1fr 320px;gap:14px;align-items:start;}
+.hv-main{display:flex;flex-direction:column;gap:14px;}
+.hv-side{display:flex;flex-direction:column;gap:14px;}
+
+/* AHU cards */
+.hv-ahus{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.hv-ahu{
+  background:var(--card-alt);border:1px solid #e3e8f1;border-radius:var(--radius-m);
+  padding:12px 14px;border-top:3px solid var(--good);
+}
+.hv-ahu.off{border-top-color:#aab3c7;opacity:.75;}
+.hv-ahu.fault{border-top-color:var(--bad);}
+.hv-ahu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.hv-ahu-name{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;}
+.hv-fan-icon{color:var(--accent);font-size:15px;}
+.hv-fan-icon.spin{animation:hvSpin 1.4s linear infinite;}
+@keyframes hvSpin{to{transform:rotate(360deg);}}
+.hv-ahu-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11.5px;color:var(--text-muted);margin-bottom:10px;}
+.hv-ahu-grid b{color:var(--text-dark);font-weight:600;margin-right:auto;}
+.hv-ahu-grid .row{display:flex;justify-content:space-between;}
+.hv-ahu-actions{display:flex;gap:8px;}
+
+/* zone (fan coil) cards */
+.hv-zones{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.hv-zone{
+  background:var(--card);border:1px solid #e3e8f1;border-radius:var(--radius-m);
+  padding:12px 14px;
+}
+.hv-zone-name{font-size:12.5px;font-weight:700;margin-bottom:8px;}
+.hv-zone-temp{display:flex;align-items:baseline;gap:6px;margin-bottom:2px;}
+.hv-zone-temp .v{font-size:22px;font-weight:700;}
+.hv-zone-temp .v.hot{color:var(--bad);}
+.hv-zone-temp .v.cold{color:var(--accent);}
+.hv-zone-temp small{font-size:11px;color:var(--text-muted);}
+.hv-zone-sp{font-size:11px;color:var(--text-muted);margin-bottom:10px;}
+.hv-sp-ctrl{display:flex;align-items:center;justify-content:center;gap:10px;}
+.hv-sp-btn{
+  width:26px;height:26px;border-radius:50%;border:1px solid #dde3ee;background:var(--card-alt);
+  font-family:inherit;font-size:14px;font-weight:700;color:var(--text-dark);cursor:pointer;
+}
+.hv-sp-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+.hv-sp-val{font-size:13px;font-weight:700;min-width:44px;text-align:center;}
+.hv-zone-mode{display:flex;justify-content:center;gap:6px;margin-top:9px;}
+.hv-mode-btn{
+  padding:3px 9px;border-radius:12px;border:1px solid #dde3ee;background:var(--card-alt);
+  font-family:inherit;font-size:10.5px;color:var(--text-muted);cursor:pointer;
+}
+.hv-mode-btn.active.cool{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700;}
+.hv-mode-btn.active.heat{background:#fdece3;border-color:var(--bad);color:var(--bad);font-weight:700;}
+.hv-mode-btn.active.fan{background:#eef1f7;border-color:#8b97b8;color:var(--text-dark);font-weight:700;}
+.hv-mode-btn.active.off{background:#eef1f7;border-color:#aab3c7;color:#8b97b8;font-weight:700;}
+
+/* small generic buttons reused from lighting-style */
+.hv-btn{
+  padding:6px 12px;border-radius:8px;border:1px solid #dde3ee;background:var(--card-alt);
+  font-family:inherit;font-size:11.5px;font-weight:600;color:var(--text-muted);cursor:pointer;
+}
+.hv-btn.on{border-color:var(--good);background:#e6f7ec;color:var(--good);}
+.hv-btn.off{border-color:var(--bad);background:#fbe9e9;color:var(--bad);}
+
+/* chillers */
+.hv-chiller-row{display:flex;align-items:center;justify-content:space-between;padding:9px 2px;border-bottom:1px dashed #e3e8f1;font-size:12.5px;}
+.hv-chiller-row:last-child{border-bottom:none;}
+.hv-chiller-row .n{display:flex;align-items:center;gap:8px;font-weight:600;}
+.hv-chiller-row .stats{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.hv-chiller-col{display:flex;flex-direction:column;gap:2px;}
+
+/* trend svg */
+.hv-trend-svg{width:100%;height:130px;}
+.hv-trend-legend{display:flex;gap:16px;font-size:11px;color:var(--text-muted);margin-top:6px;}
+.hv-trend-legend .lg{width:14px;height:3px;border-radius:2px;display:inline-block;margin-left:5px;}
+.hv-trend-legend .lg.temp{background:#1f7ae0;}
+.hv-trend-legend .lg.sp{background:#e0932e;}

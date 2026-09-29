@@ -189,6 +189,21 @@
                     <td class="icon"><i class="fa-solid fa-droplet"></i></td>
                     <td>نشتی آب در اتاق تاسیسات منفی ۱</td>
                   </tr>
+                  <tr>
+                    <td class="time">10:10</td>
+                    <td class="icon"><i class="fa-solid fa-droplet"></i></td>
+                    <td>نشتی آب در اتاق تاسیسات منفی ۱</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:30</td>
+                    <td class="icon"><i class="fa-solid fa-plug-circle-xmark"></i></td>
+                    <td>overload pump 1</td>
+                  </tr>
+                  <tr>
+                    <td class="time">10:40</td>
+                    <td class="icon"><i class="fa-solid fa-bolt"></i></td>
+                    <td>اتلاف دما در اتاق طبقه 2</td>
+                  </tr>
                 </table>
               </div>
             </div>
@@ -268,8 +283,9 @@
           <div class="card mr-diagram-card">
             <div class="card-title">شماتیک فرآیند موتورخانه</div>
             <!--<img src="images/final/chiller.svg" width="120%" height="60%">
-          <img src="images/final/firestation.svg" width="100%" height="50%">-->
-            <img src="images/final/maindiv.svg" width="100%" height="650vw" background="withe">
+          <img src="images/final/firestation.svg" width="100%" height="50%">
+            <img src="images/final/maindiv.svg" width="100%" height="650vw" background="withe">-->
+            <div id="motorroom-svg-container"></div>
             <div class="pipe-legend">
               <span class="item"><span class="swatch" style="background:#d64545;"></span>آب آتش‌نشانی</span>
               <span class="item"><span class="swatch" style="background:#1f7ae0;"></span>آب مصرفی / آب سرد رفت</span>
@@ -503,6 +519,59 @@
 
         </section>
 
+        <!-- ============ HVAC ============
+     این بلوک را در index.html، داخل <main class="content">
+     و قبل از <section id="screen-generic"> قرار بده. -->
+        <section class="screen" id="screen-hvac">
+
+          <div class="hv-kpis">
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-fan"></i> هواسازهای فعال</span><span
+                class="val"><span id="hvKpiAhuOn">0</span> <small id="hvKpiAhuTotal">/ 0</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-temperature-half"></i> میانگین دمای
+                مناطق</span><span class="val"><span id="hvKpiAvgTemp">0</span> <small>°C</small></span></div>
+            <div class="kpi alarm"><span class="lbl"><i class="fa-solid fa-triangle-exclamation"></i> انحراف از
+                ست‌پوینت</span><span class="val"><span id="hvKpiDev">0</span></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-snowflake"></i> چیلرهای روشن</span><span
+                class="val"><span id="hvKpiChiller">0</span> <small>/ 2</small></span></div>
+            <div class="kpi"><span class="lbl"><i class="fa-solid fa-bolt"></i> مصرف برق HVAC</span><span
+                class="val"><span id="hvKpiPower">0</span> <small>kW</small></span></div>
+          </div>
+
+          <div class="hv-tabs" id="hvTabs"></div>
+
+          <div class="hv-layout">
+            <div class="hv-main">
+
+              <div class="card">
+                <div class="card-title">هواسازها (AHU) — <span id="hvAhuFloorLabel"></span></div>
+                <div class="hv-ahus" id="hvAhus"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">فن‌کوئل و دمای مناطق — <span id="hvZoneFloorLabel"></span></div>
+                <div class="hv-zones" id="hvZones"></div>
+              </div>
+
+            </div>
+
+            <aside class="hv-side">
+              <div class="card">
+                <div class="card-title">چیلرها و پمپ‌های آب سرد</div>
+                <div id="hvChillers"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-title">روند دما و ست‌پوینت — <span id="hvTrendZoneLabel"></span></div>
+                <svg class="hv-trend-svg" id="hvTrendSvg" viewBox="0 0 300 130" preserveAspectRatio="none"></svg>
+                <div class="hv-trend-legend">
+                  <span><b class="lg temp"></b> دمای فعلی</span>
+                  <span><b class="lg sp"></b> ست‌پوینت</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+        </section>
 
         <!-- ============ GENERIC PLACEHOLDER (shared by remaining menu items) ============ -->
         <section class="screen" id="screen-generic">
@@ -529,6 +598,7 @@
   <script src="./js/load-svg.js"></script>
   <script src="./js/lighting.js"></script>
   <script src="./js/fire.js"></script>
+  <script src="./js/hvac.js"></script>
 </body>
 </body>
 
