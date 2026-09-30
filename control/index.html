@@ -15,7 +15,56 @@
 <body>
 
   <div class="stage" id="stage">
+    <!-- ============ LOGIN OVERLAY ============
+     این بلوک را بلافاصله بعد از <div class="stage" id="stage">
+     و قبل از <div class="topbar"> در index.html قرار بده،
+     یعنی اولین فرزند داخل stage باشد تا کل صفحه را بپوشاند. -->
+    <div class="login-overlay" id="loginOverlay">
+      <div class="login-bg-shape s1"></div>
+      <div class="login-bg-shape s2"></div>
 
+      <div class="login-box">
+        <div class="login-brand">
+          <div class="mark"><i class="fa-solid fa-building-columns"></i></div>
+          <div class="name">Bank BMS</div>
+          <div class="sub">سامانه مدیریت هوشمند ساختمان &nbsp;|&nbsp; WinCC Unified</div>
+        </div>
+
+        <form class="login-form" id="loginForm" autocomplete="off">
+          <label for="loginUser">نام کاربری</label>
+          <div class="login-input">
+            <i class="fa-solid fa-user"></i>
+            <input id="loginUser" type="text" placeholder="نام کاربری خود را وارد کنید" autocomplete="off">
+          </div>
+
+          <label for="loginPass">رمز عبور</label>
+          <div class="login-input">
+            <i class="fa-solid fa-lock"></i>
+            <input id="loginPass" type="password" placeholder="رمز عبور" autocomplete="off">
+            <button type="button" class="login-eye" id="loginTogglePass" aria-label="نمایش رمز عبور">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="login-row">
+            <label class="login-remember"><input type="checkbox" id="loginRemember"> مرا به خاطر بسپار</label>
+            <a href="#" class="login-forgot" id="loginForgot">فراموشی رمز عبور؟</a>
+          </div>
+
+          <div class="login-error" id="loginError">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>لطفاً نام کاربری و رمز عبور را وارد کنید.</span>
+          </div>
+
+          <button type="submit" class="login-btn" id="loginBtn">
+            <span id="loginBtnText">ورود به سامانه</span>
+            <i class="fa-solid fa-spinner fa-spin" id="loginSpinner" style="display:none;"></i>
+          </button>
+        </form>
+
+        <div class="login-foot">Bank BMS &nbsp;|&nbsp; نسخه پیش‌نمایش HTML &nbsp;|&nbsp; حالت نمایش (Demo Mode)</div>
+      </div>
+    </div>
     <!-- TOP BAR -->
     <div class="topbar">
       <div class="brand">
@@ -599,6 +648,7 @@
   <script src="./js/lighting.js"></script>
   <script src="./js/fire.js"></script>
   <script src="./js/hvac.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 </body>
 
